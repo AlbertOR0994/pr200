@@ -23,6 +23,7 @@ class Web {
 
     public function cierrehtml(){
        echo '       </body>
+       <script src="js.js"></script>
         </html>';
 
     }
@@ -114,4 +115,17 @@ class Web {
     $sentencia->close();
     }
     
+    public function zonasdiv(){
+        echo "
+        <div class = resultado></div>
+        <div class = resultado1></div>
+        <div class = resultado2></div>
+        <div class = resultado3></div>
+        <div class = resultado4></div>
+        <div class = resultado5></div>
+        <div class = resultado6></div>
+        <div class = resultado7></div>
+        <div class = resultado8></div>
+        <div class = resultado9></div>";
+    }
 }
