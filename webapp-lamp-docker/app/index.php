@@ -9,7 +9,9 @@ $website->aperturahtml();
 
 
 $website->menu();
-$website->mostrarzonas('127.0.0.1','pr200','localhost','');
+$website->mostrarzonas();
+$website->insertarzonas();
+$website->zonasdiv();
 $website->piedepagina();
 
 

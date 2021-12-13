@@ -22,8 +22,9 @@ class Web {
     }
 
     public function cierrehtml(){
-       echo '       </body>
-       <script src="js.js"></script>
+       echo '       
+       <script src=js.js></script>
+       </body>
         </html>';
 
     }
@@ -32,14 +33,15 @@ class Web {
         echo '<div class="resultado"></div></main>
         <div class="pie"><span class ="textpie">Web daw Pr200<br>05/12/2021</span></div>';
     }
+
     public function menu(){
         echo '<nav class = "menu">
         <ul>
-        <li id = zona> Z100 </li>
-        <li id = zona> Z200 </li>
-        <li id = zona> Z300 </li>
-        <li id = zona> Z400 </li>
-        <li id = zona> Z500 </li>
+        <li class = zona> Z100 </li>
+        <li class = zona> Z200 </li>
+        <li class = zona> Z300 </li>
+        <li class = zona> Z400 </li>
+        <li class = zona> Z500 </li>
         </ul>
         </nav>';
     }
@@ -48,13 +50,15 @@ class Web {
     public function mostrarzonas(){
 
 
-    $servername = '127.0.0.1';
+    $servername = 'mysql';
     $database = 'pr200';
     $username = 'root';
-    $password = '';
-    // Create connection
+    $password = 'rpass';
+
+    // Crear conexion
     $bd = mysqli_connect($servername, $username, $password, $database);
-    // Check connection
+    // Comprobar conexion
+    
     if (!$bd) {
         die("conexión fallida: " . mysqli_connect_error());
     }
@@ -67,6 +71,7 @@ class Web {
         while ($sentencia->fetch()){
             echo "<div class = zonas>$id , $zona , $subzona</div>";
         }
+
     $sentencia->close();
     
     //Preparar: 
@@ -76,6 +81,7 @@ class Web {
         while ($sentencia->fetch()){
             echo  " <div class = s2>$hora , $id , $pulsacion</div>";
         }
+
     $sentencia->close();
 
     //Preparar: 
@@ -90,27 +96,27 @@ class Web {
     }
 
     public function insertarzonas(){
-        $servername = '127.0.0.1';
+        $servername = 'mysql';
         $database = 'pr200';
         $username = 'root';
-        $password = '';
-        // Create connection
+        $password = 'rpass';
+        // Crear conexion
         $bd = mysqli_connect($servername, $username, $password, $database);
-        // Check connection
+        // Comprobar conexion
         if (!$bd) {
             die("conexión fallida: " . mysqli_connect_error());
         }
         echo "Conectado";
 
     //Preparar:
-    $temperatura = $_GET['t'];
-    $humedad = $_GET['h'];
+    $temperatura = $_POST['t'];
+    $humedad = $_POST['h'];
      
     $sentencia = $bd->prepare("INSERT INTO s4 (`humedad`,`Temperatura`) VALUES ($humedad,$temperatura)");
     $sentencia->execute();
-    $sentencia->bind_result($id,$humeda,$temperaturas);
+    $sentencia->bind_result($humeda,$temperaturas);
         while ($sentencia->fetch()){
-            echo "<div class = zonas>$id , $humedad , $temperatura</div>";
+            echo "<div class = zonas> $humedad , $temperatura</div>";
         }
     $sentencia->close();
     }
@@ -118,14 +124,14 @@ class Web {
     public function zonasdiv(){
         echo "
         <div class = resultado></div>
-        <div class = resultado1></div>
-        <div class = resultado2></div>
-        <div class = resultado3></div>
-        <div class = resultado4></div>
-        <div class = resultado5></div>
-        <div class = resultado6></div>
-        <div class = resultado7></div>
-        <div class = resultado8></div>
-        <div class = resultado9></div>";
+        <div class = resultado></div>
+        <div class = resultado></div>
+        <div class = resultado></div>
+        <div class = resultado></div>
+        <div class = resultado></div>
+        <div class = resultado></div>
+        <div class = resultado></div>
+        <div class = resultado></div>
+        <div class = resultado></div>";
     }
 }

@@ -18,7 +18,7 @@ char pass[] = "YGEJPVC3JPSE2V"; // contraseña de wifi
 
 int status = WL_IDLE_STATUS;
 // Ip del servidor
-char server[] = "http://3.231.115.127"; 
+char server[] = "localhost"; 
 
 WiFiClient client;
 
@@ -63,7 +63,7 @@ void loop() {
     if (client.connect(server, 80)) {
       Serial.println("connected to server");
       // Make a HTTP request:
-      client.print("GET /classWeb.php?humedad=");
+      client.print("POST /classWeb.php?humedad=");
       client.print(h);
       client.print("&temperatura=");
       client.print(t);

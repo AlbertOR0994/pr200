@@ -1,7 +1,7 @@
 CREATE DATABASE PR200
 
-CREATE TABLE zonas)
-	id int not null AUTO_INCREMENTE PRIMARY KEY
+CREATE TABLE zonas(
+	id int not null AUTO_INCREMENT PRIMARY KEY
 	,zona varchar(50)
 	,subzona varchar(50)
 	);
@@ -10,11 +10,11 @@ CREATE TABLE s2 (
 	id int not null AUTO_INCREMENT
 	,hora timestamp
 	,pulsacion float
-	FOREIGN KEY (id) REFERENCES zonas(id)
+	,FOREIGN KEY (id) REFERENCES zonas(id)
 	);
 CREATE TABLE s4 (
 	id int not null AUTO_INCREMENT
 	,temperatura int
 	,humedad int
-	FOREIGN KEY (id) REFERENCES zonas(id)
+	,FOREIGN KEY (id) REFERENCES zonas(id)
 	);
