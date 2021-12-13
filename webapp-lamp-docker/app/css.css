@@ -49,3 +49,25 @@ li{
     width: 800px;
     height: 400px;
 }
+
+.s1{
+    display:flex;
+    border:solid;
+    width:  98%;
+    margin-top:100px
+}
+.datos{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.zona1{
+    border:solid;
+}
+.pul1{
+    border:solid;
+}
+.temp1{
+    border:solid;
+}

@@ -4,16 +4,15 @@ namespace Alberto\src;
 require('./classWeb.php');
 
 $website = new Web();
+$mysql = new Conectar('pr200','mysql','root','rpass');
 
 $website->aperturahtml();
 
 
 $website->menu();
-$website->mostrarzonas();
-$website->insertarzonas();
-$website->zonasdiv();
+echo "<div class = datos>";
+$website->datoszona();
+echo "</div>>";
 $website->piedepagina();
-
-
 $website->cierrehtml();
 

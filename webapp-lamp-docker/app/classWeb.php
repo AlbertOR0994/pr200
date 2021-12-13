@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Alberto\src;
 
-
+require('./classConexion.php');
 class Web {
 
     public function aperturahtml(){
@@ -45,93 +45,8 @@ class Web {
         </ul>
         </nav>';
     }
-
-
-    public function mostrarzonas(){
-
-
-    $servername = 'mysql';
-    $database = 'pr200';
-    $username = 'root';
-    $password = 'rpass';
-
-    // Crear conexion
-    $bd = mysqli_connect($servername, $username, $password, $database);
-    // Comprobar conexion
-    
-    if (!$bd) {
-        die("conexión fallida: " . mysqli_connect_error());
-    }
-    echo "Conectado";
-
-    //Preparar: 
-    $sentencia = $bd->prepare("SELECT * FROM `zonas` ");
-    $sentencia->execute();
-    $sentencia->bind_result($id,$zona,$subzona);
-        while ($sentencia->fetch()){
-            echo "<div class = zonas>$id , $zona , $subzona</div>";
-        }
-
-    $sentencia->close();
-    
-    //Preparar: 
-    $sentencia = $bd->prepare("SELECT * FROM `s2` ");
-    $sentencia->execute();
-    $sentencia->bind_result($hora,$id,$pulsacion);
-        while ($sentencia->fetch()){
-            echo  " <div class = s2>$hora , $id , $pulsacion</div>";
-        }
-
-    $sentencia->close();
-
-    //Preparar: 
-    $sentencia = $bd->prepare("SELECT * FROM `s4` ");
-    $sentencia->execute();
-    $sentencia->bind_result($humedad,$id,$temperatura);
-        while ($sentencia->fetch()){
-            echo "<div class = s4>$humedad, $id , $temperatura</div>";
-        }
-    $sentencia->close();
-    mysqli_close($bd);
-    }
-
-    public function insertarzonas(){
-        $servername = 'mysql';
-        $database = 'pr200';
-        $username = 'root';
-        $password = 'rpass';
-        // Crear conexion
-        $bd = mysqli_connect($servername, $username, $password, $database);
-        // Comprobar conexion
-        if (!$bd) {
-            die("conexión fallida: " . mysqli_connect_error());
-        }
-        echo "Conectado";
-
-    //Preparar:
-    $temperatura = $_POST['t'];
-    $humedad = $_POST['h'];
-     
-    $sentencia = $bd->prepare("INSERT INTO s4 (`humedad`,`Temperatura`) VALUES ($humedad,$temperatura)");
-    $sentencia->execute();
-    $sentencia->bind_result($humeda,$temperaturas);
-        while ($sentencia->fetch()){
-            echo "<div class = zonas> $humedad , $temperatura</div>";
-        }
-    $sentencia->close();
-    }
-    
-    public function zonasdiv(){
-        echo "
-        <div class = resultado></div>
-        <div class = resultado></div>
-        <div class = resultado></div>
-        <div class = resultado></div>
-        <div class = resultado></div>
-        <div class = resultado></div>
-        <div class = resultado></div>
-        <div class = resultado></div>
-        <div class = resultado></div>
-        <div class = resultado></div>";
+    public function datoszona(){
+        $mysql = new Conectar('pr200','mysql','root','rpass');
+        $mysql->mostrarzonas();
     }
 }

@@ -3,8 +3,8 @@
 #include <WiFiNINA.h>
 #include <MFRC522.h>
 #include <DHT.h>
-#define RST_PIN         9         // Pin rst
-#define SS_PIN          10         // Pin sda
+#define RST_PIN         7         // Pin rst
+#define SS_PIN          11         // Pin sda
 #define DHTPIN 2
 
 #define DHTTYPE DHT11 // Tipo de sensor
@@ -18,7 +18,7 @@ char pass[] = "YGEJPVC3JPSE2V"; // contraseña de wifi
 
 int status = WL_IDLE_STATUS;
 // Ip del servidor
-char server[] = "localhost"; 
+char server[] = "127.0.0.1"; 
 
 WiFiClient client;
 
@@ -31,6 +31,13 @@ void setup() {
   Serial.println(F("a"));
   // Inicio del DHT
   dht.begin();
+
+  int h = dht.readHumidity();
+  int t = dht.readTemperature();
+
+  Serial.println(h);
+  Serial.println(t);
+  
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Communication with WiFi module failed!");  
     while (true);
@@ -63,7 +70,7 @@ void loop() {
     if (client.connect(server, 80)) {
       Serial.println("connected to server");
       // Make a HTTP request:
-      client.print("POST /classWeb.php?humedad=");
+      client.print("GET /classConexion.php?humedad=");
       client.print(h);
       client.print("&temperatura=");
       client.print(t);
