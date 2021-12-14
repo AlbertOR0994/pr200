@@ -45,8 +45,4 @@ class Web {
         </ul>
         </nav>';
     }
-    public function datoszona(){
-        $mysql = new Conectar('pr200','mysql','root','rpass');
-        $mysql->mostrarzonas();
-    }
 }

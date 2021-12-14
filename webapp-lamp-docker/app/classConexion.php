@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Alberto\src;
 
+       
 class Conectar{
 
     private string $bd;
@@ -53,7 +54,7 @@ class Conectar{
         $sentencia1->close();
     
         //Preparar: 
-        $sentencia = $bd->prepare("SELECT s4.id, s4.temperatura, s4.humedad, zonas.zona FROM `s4` INNER JOIN zonas ON s4.id = zonas.id;");
+        $sentencia = $bd->prepare("SELECT s4.id, s4.temperatura, s4.humedad, zonas.zona FROM `s4` INNER JOIN zonas ON s4.id = zonas.id; ORDER BY DESC");
         $sentencia->execute();
         $sentencia->bind_result($id, $temperatura, $humedad, $zona);
         $i = 0;
@@ -65,22 +66,18 @@ class Conectar{
         mysqli_close($bd);
         }
     
-        public function insertarzonas(){
-            // Crear conexion
-            $bd = mysqli_connect($this->bd,$this->server,$this->user,$this->password);
-            // Comprobar conexion
-            if (!$bd) {
-                die("conexión fallida: " . mysqli_connect_error());
-            }
-            echo "Conectado";
-    
+        public function insertarzonas($temperatura,$humedad){
+        // Crear conexion
+        $bd = mysqli_connect($this->server,$this->user,$this->password,$this->bd);
+        // Comprobar conexion
+        if (!$bd) {
+            die("conexión fallida: " . mysqli_connect_error());
+        }
+        echo "Conectado";
+
         //Preparar:
-        $temperatura = $_GET['t'];
-        $humedad = $_GET['h'];
-         
-        $sentencia = $bd->prepare("INSERT INTO s4 (`humedad`,`Temperatura`) VALUES ($humedad,$temperatura)");
+        $sentencia = $bd->prepare("INSERT INTO pr200.s4 (`id`,`temperatura`,`humedad`) VALUES (2,$temperatura,$humedad)");
         $sentencia->execute();
-        $sentencia->bind_result($humeda,$temperaturas);
         $i = 0;
             while ($sentencia->fetch()){
                 $i++;
