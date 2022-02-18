@@ -1,0 +1,32 @@
+{
+    "name": "alberto/pr",
+    "description": "Proyecto nº2 Isla Magica ¿?",
+    "type": "project",
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "GPL",
+    "autoload": {
+        "psr-4": {
+            "Alberto\\Pr\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AlbertOR0994",
+            "email": "alberto.ocete.rosario@080formacion.alzago.es"
+        }
+    ],
+    "autoload-dev": {
+        "psr-4": {
+            "Alberto\\Pr\\Test\\": "test/"
+        }
+    },
+    "minimum-stability": "stable"
+    ,
+        "config": {
+            "bin-dir": "bin"
+        }
+    
+}
+
